@@ -16,11 +16,11 @@ export class DashboardComponent implements OnInit {
     1006: { name: "Podi", accno: 1006, pin: 5555, password: "podi123", balance: 25000 },
 
 }
-  acno="";
+  acno="1001";
   amount="";
-  pinn="";
-  acno1="";
-  pinn1="";
+  pinn="5698";
+  acno1="1001";
+  pinn1="5698";
   amount1="";
 
 
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
             alert("Wrong Account Number or Pin")
         }
     }
-}
+  }
  
  widraw() {
     alert("Widraw Successfull!")

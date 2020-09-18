@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -6,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
+  public get router(): Router {
+    return this._router;
+  }
+  public set router(value: Router) {
+    this._router = value;
+  }
    accountDetails = {
     1001: { name: "Akshay Kp", accno: 1001, pin: 5698, password: "user1", balance: 3000 },
     1002: { name: "Monachan", accno: 1002, pin: 5697, password: "user2", balance: 20000 },
@@ -15,8 +23,8 @@ export class LoginComponent  {
     1006: { name: "Podi", accno: 1006, pin: 5555, password: "podi123", balance: 25000 },
 
 }
-accno="1234";
-pwd="";
+accno="1001";
+pwd="user1";
 AccnoChange(event)
 {
   alert("Account Number "+event.target.value+" Enterd Successfullly")
@@ -29,7 +37,7 @@ PassChange(event)
 }
 
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
  
   login()
@@ -43,7 +51,7 @@ PassChange(event)
       let pwd = data[accno].password
       if (pwd == password) {
           alert("Successfull Login")
-          window.location.href = "userhome.html"
+          this.router.navigateByUrl("dashboard")
       } else {
           alert("Account Numnber or Password Error! ")
       }
