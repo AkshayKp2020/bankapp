@@ -6,13 +6,14 @@
                 <h1>Welcome to Federal Bank</h1><br>
 
                 <div class="form-group">
+                    {{accno}}
                     <label for="accno">Account Number</label>
-                    <input (change)="AccnoChange($event)" type="text" class="form-control" id="accno" aria-describedby="emailHelp">
+                    <input [(ngModel)]="accno" type="text" class="form-control" id="accno" aria-describedby="emailHelp">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your Account Number with anyone else.</small>
                 </div>
                 <div class="form-group">
-                    <label for="password1">Password</label>
-                    <input (change)="PassChange($event)" type="password" class="form-control" id="password1">
+                    <label for="pwd">Password</label>
+                    <input [(ngModel)]="pwd" type="password" class="form-control" id="pwd">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">

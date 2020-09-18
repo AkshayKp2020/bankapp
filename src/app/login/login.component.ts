@@ -15,17 +15,17 @@ export class LoginComponent  {
     1006: { name: "Podi", accno: 1006, pin: 5555, password: "podi123", balance: 25000 },
 
 }
-accnonum="";
-psswd="";
+accno="1234";
+pwd="";
 AccnoChange(event)
 {
-  alert("Account Number "+event.target.value+" Verified Successfullly")
-  this.accnonum=event.target.value
+  alert("Account Number "+event.target.value+" Enterd Successfullly")
+  this.accno=event.target.value
 }
 PassChange(event)
 {
   alert("Password Enterd Successfully!")
-  this.psswd=event.target.value
+  this.pwd=event.target.value
 }
 
 
@@ -36,12 +36,12 @@ PassChange(event)
   {
     
   
-  var accno = this.accnonum
-  var password = this.psswd
+  var accno = this.accno
+  var password = this.pwd
   var data = this.accountDetails
   if (accno in data) {
-      let password1 = data[accno].password
-      if (password1 == password) {
+      let pwd = data[accno].password
+      if (pwd == password) {
           alert("Successfull Login")
           window.location.href = "userhome.html"
       } else {
