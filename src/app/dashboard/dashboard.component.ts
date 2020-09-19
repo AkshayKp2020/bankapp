@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from  '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,20 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  accountDetails = {
-    1001: { name: "Akshay Kp", accno: 1001, pin: 5698, password: "user1", balance: 3000 },
-    1002: { name: "Monachan", accno: 1002, pin: 5697, password: "user2", balance: 20000 },
-    1003: { name: "Krishna Hari Dil", accno: 1003, pin: 5696, password: "user3", balance: 50000 },
-    1004: { name: "Nandhu S Nair", accno: 1004, pin: 5695, password: "user4", balance: 25000 },
-    1005: { name: "Alisha Jose", accno: 1005, pin: 5694, password: "user5", balance: 54000 },
-    1006: { name: "Podi", accno: 1006, pin: 5555, password: "podi123", balance: 25000 },
-
-}
-  acno="1001";
+ 
+  acno="";
   amount="";
-  pinn="5698";
-  acno1="1001";
-  pinn1="5698";
+  pinn="";
+  acno1="";
+  pinn1="";
   amount1="";
 
 
@@ -30,7 +24,7 @@ export class DashboardComponent implements OnInit {
     var accno = this.acno
     var pinnum = this.pinn
     var amount = this.amount
-    var data = this.accountDetails;
+    var data = this.dataService.accountDetails;
     if (accno in data) {
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
@@ -41,6 +35,9 @@ export class DashboardComponent implements OnInit {
             alert("Wrong Account Number or Pin")
         }
     }
+    else{
+      alert("Invalid Account number");
+    }
   }
  
  widraw() {
@@ -49,19 +46,21 @@ export class DashboardComponent implements OnInit {
     var accno = this.acno1
     var pinnum1 = this.pinn1
     var amount1 = this.amount1
-    var data = this.accountDetails;
+    var data = this.dataService.accountDetails;
     if (accno in data) {
         let mpin1 = data[accno].pin;
         if (pinnum1 == mpin1) {
             data[accno].balance = amount1;
             alert(data[accno].balance + " Has Been Debited from your Account")
-
-
         }
-    }
-}
 
-  constructor() { }
+    }
+    else{
+      alert("Invalid Account number");
+}
+ }
+
+  constructor(private _router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
   }

@@ -1,2 +1,38 @@
-<p>Registration Works!!!</p>
+<div class="conatiner">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+
+            <h1>Welcome to MiNe Bank</h1>
+            <div class="jumbotron">
+                <h3>Register Your New Account</h3><br>
+
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input [(ngModel)]="name" type="text" class="form-control" id="name" aria-describedby="emailHelp"> {{accno}}
+                    <label for="accno">Account Number</label>
+                    <input [(ngModel)]="accno" type="text" class="form-control" id="accno" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your Account Number with anyone else.</small>
+                </div>
+                <label for="pin">Pin Number</label>
+                <input [(ngModel)]="pin" type="text" class="form-control" id="pin" aria-describedby="emailHelp">
+                <div class="form-group">
+
+                    <label for="pwd">Password</label>
+                    <input [(ngModel)]="pwd" type="password" class="form-control" id="pwd">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="register()">Submit</button>
+                <br><br>
+                <a routerLink="">Go Back</a>
+
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
 <a routerLink="">GO BACK</a>
