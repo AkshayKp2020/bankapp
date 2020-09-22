@@ -9,21 +9,10 @@ import { DataService } from  '../services/data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
-  public get dataService(): DataService {
-    return this._dataService;
-  }
-  public set dataService(value: DataService) {
-    this._dataService = value;
-  }
-  public get router(): Router {
-    return this._router;
-  }
-  public set router(value: Router) {
-    this._router = value;
-  }
+  
    
-accno="1001";
-pwd="user1";
+accno="";
+pwd="";
 AccnoChange(event)
 {
   alert("Account Number "+event.target.value+" Enterd Successfullly")
@@ -36,7 +25,7 @@ PassChange(event)
 }
 
 
-  constructor(private _router: Router, private _dataService: DataService ) { }
+  constructor(private router: Router, private dataService: DataService ) { }
 
  
   login()
@@ -52,16 +41,13 @@ PassChange(event)
           alert("Successfull Login")
           this.router.navigateByUrl("dashboard")
       } else {
-          alert("Account Numnber or Password Error! ")
+          alert("Invalid Password ")
       }
 
   } else {
       alert(" Account  Number  Doesnt Exist")
   }
 }
-Register()
-{
-  alert("Successfully Verified")
-}
+
 
 }

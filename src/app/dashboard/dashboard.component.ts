@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   acno1="";
   pinn1="";
   amount1="";
+  amount2=0;
 
 
   deposit() {
@@ -24,11 +25,12 @@ export class DashboardComponent implements OnInit {
     var accno = this.acno
     var pinnum = this.pinn
     var amount = this.amount
+ 
     var data = this.dataService.accountDetails;
     if (accno in data) {
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
-            data[accno].balance = amount;
+            data[accno].balance= amount;
             alert("Depostie Successfull!")
             alert("Account Has been Credited with Rs: " + data[accno].balance)
         } else {
@@ -45,24 +47,28 @@ export class DashboardComponent implements OnInit {
 
     var accno = this.acno1
     var pinnum1 = this.pinn1
-    var amount1 = this.amount1
+    var amount1 = parseInt(this.amount1)
+    
     var data = this.dataService.accountDetails;
     if (accno in data) {
         let mpin1 = data[accno].pin;
         if (pinnum1 == mpin1) {
-            data[accno].balance = amount1;
-            alert(data[accno].balance + " Has Been Debited from your Account")
-        }
-
+         
+          data[accno].balance = amount1;
+          
+          alert(data[accno].balance + " Has Been Debited from your Account")
+          
+         
     }
     else{
       alert("Invalid Account number");
 }
  }
-
+ }
   constructor(private _router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
 }
+  
