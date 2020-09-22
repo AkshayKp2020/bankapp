@@ -1,0 +1,18 @@
+.error {
+    font-size: small;
+    color: red;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+    font-style: oblique;
+}
+
+body {
+    color: burlywood;
+}
+
+h3 {
+    color: crimson;
+}

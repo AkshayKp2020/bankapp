@@ -16,9 +16,9 @@ export class RegisterComponent implements OnInit {
 registerForm =this.fb.group
 ({
   name:['',[Validators.required]],
-  accno:[''],
-  pwd:[''],
-  pin:['']
+  accno:['',[Validators.required,Validators.minLength(4)]],
+  pwd:['',[Validators.required]],
+  pin:['',[Validators.required]]
 });
 
   constructor(private router: Router, private dataService: DataService, 
@@ -26,14 +26,24 @@ registerForm =this.fb.group
 
   ngOnInit(): void {
   }
+  getError(name)
+  {
+    return this.registerForm.get(name).errors
+  }
   register()
   {
-    
-    console.log(this.registerForm.value);
+    if(this.registerForm.valid)
+   {
    alert("account Successfully Created Please Login")
    this.router.navigateByUrl("");
   const result= this.dataService.register(this.registerForm.value.name, this.registerForm.value.accno, this.registerForm.value.pin,this.registerForm.value.pwd);
     
   }
+  else
+    {
+      alert("password should be of minimum 3 characters")
+    
+    }
 
+}
 }

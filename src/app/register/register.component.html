@@ -1,9 +1,14 @@
+<body>
+</body>
+
+<h1>Welcome to NarcoZ Bank</h1><br>
+
 <div class="conatiner">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
 
-            <h1>Welcome to NarcoZ Bank</h1>
+
             <div class="jumbotron">
                 <h3>Register Your New Account</h3><br>
 
@@ -11,16 +16,23 @@
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input formControlName="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        <div *ngIf="getError('name')" class="error">Fill in your name</div>
+
                         <label for="accno">Account Number</label>
                         <input formControlName="accno" type="text" class="form-control" id="accno" aria-describedby="emailHelp">
+                        <div *ngIf="getError('accno')" class="error">Fill in your account number</div>
+
                         <small id="emailHelp" class="form-text text-muted">We'll never share your Account Number with anyone else.</small>
                     </div>
                     <label for="pin">Pin Number</label>
                     <input formControlName="pin" type="text" class="form-control" id="pin" aria-describedby="emailHelp">
+                    <div *ngIf="getError('pin')" class="error">Fill in your pin number</div>
                     <div class="form-group">
 
                         <label for="pwd">Password</label>
                         <input formControlName="pwd" type="password" class="form-control" id="pwd">
+                        <div *ngIf="getError('pwd')" class="error">Create a password</div>
+
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
