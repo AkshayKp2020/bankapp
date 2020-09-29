@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
 }
  }
  }
-  constructor(private _router: Router, private dataService: DataService) { }
+  constructor(private _router: Router, public dataService: DataService) { }
 
   ngOnInit(): void {
   }

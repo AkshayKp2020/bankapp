@@ -13,18 +13,24 @@ export class LoginComponent  {
 
 LoginForm = this.fb.group
 ({
-  accno:['',[Validators.required,Validators.minLength(4)]],
-  pwd:['',[Validators.required]],
+  accno:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]],
+  pwd:['',[Validators.required,]],
 } )  
 
 
 
   constructor(private router: Router, private dataService: DataService, private fb:FormBuilder  ) { }
-
+  getError(accno)
+  {
+    return (this.LoginForm.get(accno).touched||this.LoginForm.get(accno).dirty)&&this.LoginForm.get(accno).errors
+  }
+  
  
   login()
   
  {
+
+  
   
   var accno = this.LoginForm.value.accno
   var password = this.LoginForm.value.pwd
@@ -46,10 +52,7 @@ LoginForm = this.fb.group
       alert(" Account  Number  Doesnt Exist")
   }
 }
+
  }
-getError(feild)
-{
-  return (this.LoginForm.get(feild).touched||this.LoginForm.get(feild).dirty)&&this.LoginForm.get(feild).errors
-}
 
 }

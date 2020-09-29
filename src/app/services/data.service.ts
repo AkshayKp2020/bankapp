@@ -15,7 +15,7 @@ export class DataService {
 
 }
 
-
+CurrentUser;
   constructor() { }
   register(name,accno,pin,password,)
   {
@@ -40,6 +40,7 @@ export class DataService {
   if (accno in data) {
       let pwd = data[accno].password
       if (pwd == password) {
+        this.CurrentUser=data[accno]
         return true;
 
   }

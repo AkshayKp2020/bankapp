@@ -9,13 +9,13 @@
 
                         <label for="accno">Account Number</label>
                         <input formControlName="accno" type="text" class="form-control" id="accno" aria-describedby="emailHelp">
-                        <div *ngIf="getError('accno')" class="error">account number should be of minimum 4 characters</div>
+                        <div *ngIf="getError('accno')" class="error">Account number invalid</div>
                         <small id="emailHelp" class="form-text text-muted">We'll never share your Account Number with anyone else.</small>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password</label>
                         <input formControlName="pwd" type="password" class="form-control" id="pwd">
-                        <div *ngIf="getError('pwd')" class="error">account number not valid</div>
+                        <div *ngIf="getError('pwd')" class="error">Please enter the password</div>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
