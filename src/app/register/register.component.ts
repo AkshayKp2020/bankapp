@@ -28,7 +28,7 @@ registerForm =this.fb.group
   }
   getError(name)
   {
-    return this.registerForm.get(name).errors
+    return (this.registerForm.get(name).touched||this.registerForm.get(name).dirty)&&this.registerForm.get(name).errors
   }
   register()
   {

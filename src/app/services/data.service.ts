@@ -15,6 +15,7 @@ export class DataService {
 
 }
 
+
   constructor() { }
   register(name,accno,pin,password,)
   {
@@ -32,5 +33,19 @@ export class DataService {
       balance:0
     }
   }
+  login(accno,password)
+  {
+    var data = this.accountDetails
+  {
+  if (accno in data) {
+      let pwd = data[accno].password
+      if (pwd == password) {
+        return true;
+
   }
 
+  }
+}
+  }
+}
+    

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from  '../services/data.service';
 
@@ -9,38 +10,35 @@ import { DataService } from  '../services/data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent  {
-  
-   
-accno="";
-pwd="";
-AccnoChange(event)
-{
-  alert("Account Number "+event.target.value+" Enterd Successfullly")
-  this.accno=event.target.value
-}
-PassChange(event)
-{
-  alert("Password Enterd Successfully!")
-  this.pwd=event.target.value
-}
+
+LoginForm = this.fb.group
+({
+  accno:['',[Validators.required,Validators.minLength(4)]],
+  pwd:['',[Validators.required]],
+} )  
 
 
-  constructor(private router: Router, private dataService: DataService ) { }
+
+  constructor(private router: Router, private dataService: DataService, private fb:FormBuilder  ) { }
 
  
   login()
-  {
-    
   
-  var accno = this.accno
-  var password = this.pwd
+ {
+  
+  var accno = this.LoginForm.value.accno
+  var password = this.LoginForm.value.pwd
   var data = this.dataService.accountDetails
+  if(this.LoginForm.valid)
+  {
   if (accno in data) {
       let pwd = data[accno].password
       if (pwd == password) {
           alert("Successfull Login")
           this.router.navigateByUrl("dashboard")
-      } else {
+          const result= this.dataService.login(this.LoginForm.value.accno, this.LoginForm.value.pwd);
+      }
+       else {
           alert("Invalid Password ")
       }
 
@@ -48,6 +46,10 @@ PassChange(event)
       alert(" Account  Number  Doesnt Exist")
   }
 }
-
+ }
+getError(feild)
+{
+  return (this.LoginForm.get(feild).touched||this.LoginForm.get(feild).dirty)&&this.LoginForm.get(feild).errors
+}
 
 }
