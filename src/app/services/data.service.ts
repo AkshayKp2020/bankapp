@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,7 @@ CurrentUser;
       if (accno in data) {
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
-            data[accno].balance= amount;
+            data[accno].balance+= amount;
             return true;
         }
       }
@@ -69,12 +70,13 @@ widraw(acno1,pinn1,amount1)
     var pinnum1 = pinn1
     var amount1=amount1
     var data = this.accountDetails;
-    if (accno in data) {
+    if (acno1 in data) {
         let mpin1 = data[accno].pin;
-        if (pinnum1 == mpin1) {
-          data[accno].balance = amount1;
+        if (pinn1 == mpin1) {
+          data[accno].balance-= amount1;
 return true;
-}
-}
+        }
+
+      }
     }
-  } 
+  }

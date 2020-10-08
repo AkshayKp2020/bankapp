@@ -41,10 +41,11 @@ export class DashboardComponent implements OnInit {
       if (accno in data) {
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
-            data[accno].balance= amount;
+            data[accno].balance+= parseInt(amount);
             const result= this.dataService.deposit(this.depositForm.value.acno, this.depositForm.value.pin, this.depositForm.value.amount);
             alert("Depostie Successfull!")
-            alert("Account Has been Credited with Rs: " + data[accno].balance)
+            alert("Account Has been Credited with Rs: " + amount)
+            alert("Your Current Account Balance is "+data[accno].balance)
         } else {
             alert("Wrong Account Number or Pin")
         }
@@ -62,7 +63,7 @@ export class DashboardComponent implements OnInit {
 
     var accno = this.widrawForm.value.acno1
     var pinnum1 = this.widrawForm.value.pinn1
-    var amount1 = parseInt(this.widrawForm.value.amount1)
+    var amount1 = (this.widrawForm.value.amount1)
     
     var data = this.dataService.accountDetails;
     if(this.widrawForm.valid)
@@ -70,9 +71,10 @@ export class DashboardComponent implements OnInit {
     if (accno in data) {
         let mpin1 = data[accno].pin;
         if (pinnum1 == mpin1) {
-          data[accno].balance = amount1;
+          data[accno].balance-= parseInt(amount1);
           const result= this.dataService.widraw(this.widrawForm.value.acno1, this.widrawForm.value.pin1, this.widrawForm.value.amount1);
-          alert(data[accno].balance + " Has Been Debited from your Account")
+          alert(amount1+ " Has Been Debited from your Account")
+          alert("Your Current Account balance is "+ data[accno].balance )
           
          
     }
