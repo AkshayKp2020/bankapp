@@ -14,15 +14,18 @@ export class DashboardComponent implements OnInit {
     acno:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]],
     amount:['',[Validators.required,Validators.pattern('[0-9]*')]],
     pinn:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]]
+  })
+  widrawForm =this.fb.group
+ ({
+    acno1:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]],
+    amount1:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pinn1:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]]
 
   });
+  
 
  
-  
-  acno1="";
-  pinn1="";
-  amount1="";
-  amount2=0;
+ 
 
 
   deposit() {
@@ -57,17 +60,18 @@ export class DashboardComponent implements OnInit {
  widraw() {
     alert("Widraw Successfull!")
 
-    var accno = this.acno1
-    var pinnum1 = this.pinn1
-    var amount1 = parseInt(this.amount1)
+    var accno = this.widrawForm.value.acno1
+    var pinnum1 = this.widrawForm.value.pinn1
+    var amount1 = parseInt(this.widrawForm.value.amount1)
     
     var data = this.dataService.accountDetails;
+    if(this.widrawForm.valid)
+    {
     if (accno in data) {
         let mpin1 = data[accno].pin;
         if (pinnum1 == mpin1) {
-         
           data[accno].balance = amount1;
-          
+          const result= this.dataService.widraw(this.widrawForm.value.acno1, this.widrawForm.value.pin1, this.widrawForm.value.amount1);
           alert(data[accno].balance + " Has Been Debited from your Account")
           
          
@@ -76,12 +80,20 @@ export class DashboardComponent implements OnInit {
       alert("Invalid Account number");
 }
  }
+}
  }
   constructor(private _router: Router, public dataService: DataService, private fb:FormBuilder ) { }
   getError(accno)
   {
     return (this.depositForm.get(accno).touched||this.depositForm.get(accno).dirty)&&this.depositForm.get(accno).errors
+
   }
+  getError1(accno)
+  {
+    return (this.widrawForm.get(accno).touched||this.widrawForm.get(accno).dirty)&&this.widrawForm.get(accno).errors
+
+  }
+ 
 
   ngOnInit(): void {
   }

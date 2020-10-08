@@ -63,5 +63,18 @@ CurrentUser;
       }
 
 }
-    
+widraw(acno1,pinn1,amount1)
+{
+  var accno = acno1
+    var pinnum1 = pinn1
+    var amount1=amount1
+    var data = this.accountDetails;
+    if (accno in data) {
+        let mpin1 = data[accno].pin;
+        if (pinnum1 == mpin1) {
+          data[accno].balance = amount1;
+return true;
 }
+}
+    }
+  } 

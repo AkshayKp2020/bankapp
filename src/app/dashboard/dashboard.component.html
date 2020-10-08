@@ -41,23 +41,28 @@
         <div class="col-6">
             <h2>Widraw Amount</h2><br>
             <div class="jumbotron">
+                <form [formGroup]=" widrawForm" > 
                 <table>
                     <tr>
                         <td>Account Number</td>
-                        <td><input [(ngModel)]="acno1" type="text" id="acno1"></td><br>
+                        <td><input formControlName="acno1" type="text" id="acno1"></td>
+                        <div *ngIf="getError1('acno1')" class="error">Account number invalid</div><br>
                     </tr>
 
                     <tr>
 
                         <td>Pin</td>
-                        <td><input [(ngModel)]="pinn1" type="text" id="pinn1"></td><br>
+                        <td><input formControlName="pinn1" type="text" id="pinn1"></td>
+                        <div *ngIf="getError1('pinn1')" class="error">Pin number invalid</div><br>
 
                         <tr>
                             <td>Amount</td>
-                            <td><input [(ngModel)]="amount1" type="text" id="amount1"></td><br>
+                            <td><input formControlName="amount1" type="text" id="amount1"></td>
+                            <div *ngIf="getError1('amount1')" class="error">Enter a valid amount</div><br>
                         </tr>
-
+                    
                 </table><br>
+            </form>
                 <button type="button" class="btn btn-primary" (click)="widraw()">Submit</button>
             </div>
 
