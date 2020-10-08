@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
   }
  
  widraw() {
-    alert("Widraw Successfull!")
+  
 
     var accno = this.widrawForm.value.acno1
     var pinnum1 = this.widrawForm.value.pinn1
@@ -70,12 +70,20 @@ export class DashboardComponent implements OnInit {
     {
     if (accno in data) {
         let mpin1 = data[accno].pin;
+
         if (pinnum1 == mpin1) {
+          if(data[accno].balance<amount1)
+          {
+            alert("Insufficent Balance!")
+          }
+          else 
+          {
+            alert("Widraw Successfull!")
           data[accno].balance-= parseInt(amount1);
           const result= this.dataService.widraw(this.widrawForm.value.acno1, this.widrawForm.value.pin1, this.widrawForm.value.amount1);
           alert(amount1+ " Has Been Debited from your Account")
           alert("Your Current Account balance is "+ data[accno].balance )
-          
+          }
          
     }
     else{

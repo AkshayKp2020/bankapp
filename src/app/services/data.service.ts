@@ -17,12 +17,32 @@ export class DataService {
 }
 
 CurrentUser;
-  constructor() { }
+  constructor() { this.saveDetails()}
+
+  saveDetails()
+  {
+    localStorage.setItem("accountDetails",JSON.stringify(this.accountDetails))
+    localStorage.setItem("CurrentUser",JSON.stringify(this.CurrentUser))
+
+  }
+  getDetails()
+  {
+    if(localStorage.getItem("accountDetails"))
+    {
+      this.accountDetails=JSON.parse( localStorage.getItem("accountDetails"));
+    }
+   if(localStorage.getItem("CurrentUser"))
+   {
+    this.CurrentUser=JSON.parse(localStorage.getItem("CurrentUser"));
+   }
+
+  }
+
   register(name,accno,pin,password,)
   {
     if (accno in this.accountDetails) {
       alert("Account Number Already Exist, Please Login");
-      return
+      return ;
     }
     
    
@@ -33,6 +53,8 @@ CurrentUser;
       password,
       balance:0
     }
+    this.saveDetails();
+        return true;
   }
   login(accno,password)
   {
@@ -42,6 +64,7 @@ CurrentUser;
       let pwd = data[accno].password
       if (pwd == password) {
         this.CurrentUser=data[accno]
+        this.saveDetails();
         return true;
 
   }
@@ -58,8 +81,8 @@ CurrentUser;
       if (accno in data) {
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
-            data[accno].balance+= amount;
-            return 
+          this.saveDetails();    
+            return true;
         }
       }
 
@@ -72,8 +95,15 @@ widraw(acno1,pinn1,amount1)
     var data = this.accountDetails;
     if (acno1 in data) {
         let mpin1 = data[accno].pin;
-        if (pinn1 == mpin1) {
+        if(data[accno].balance<amount1)
+        {
+          alert("Insufficent Balance!")
+          return
+        }
+
+        else if (pinn1 == mpin1) {
           data[accno].balance-= amount1;
+          this.saveDetails();
 return true;
         }
 
