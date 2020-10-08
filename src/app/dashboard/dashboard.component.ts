@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from  '../services/data.service';
 
@@ -9,10 +10,15 @@ import { DataService } from  '../services/data.service';
 })
 export class DashboardComponent implements OnInit {
 
+  depositForm = this.fb.group({
+    acno:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]],
+    amount:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pinn:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(4)]]
+
+  });
+
  
-  acno="";
-  amount="";
-  pinn="";
+  
   acno1="";
   pinn1="";
   amount1="";
@@ -22,24 +28,30 @@ export class DashboardComponent implements OnInit {
   deposit() {
 
 
-    var accno = this.acno
-    var pinnum = this.pinn
-    var amount = this.amount
+    var accno = this.depositForm.value.acno
+    var pinnum = this.depositForm.value.pinn
+    var amount = this.depositForm.value.amount
  
     var data = this.dataService.accountDetails;
-    if (accno in data) {
+    if(this.depositForm.valid)
+    {
+      if (accno in data) {
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
             data[accno].balance= amount;
+            const result= this.dataService.deposit(this.depositForm.value.acno, this.depositForm.value.pin, this.depositForm.value.amount);
             alert("Depostie Successfull!")
             alert("Account Has been Credited with Rs: " + data[accno].balance)
         } else {
             alert("Wrong Account Number or Pin")
         }
     }
-    else{
+    else
+    {
       alert("Invalid Account number");
     }
+    }
+    
   }
  
  widraw() {
@@ -65,7 +77,11 @@ export class DashboardComponent implements OnInit {
 }
  }
  }
-  constructor(private _router: Router, public dataService: DataService) { }
+  constructor(private _router: Router, public dataService: DataService, private fb:FormBuilder ) { }
+  getError(accno)
+  {
+    return (this.depositForm.get(accno).touched||this.depositForm.get(accno).dirty)&&this.depositForm.get(accno).errors
+  }
 
   ngOnInit(): void {
   }

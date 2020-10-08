@@ -48,5 +48,20 @@ CurrentUser;
   }
 }
   }
+  deposit(acno,pinn,amount)
+  {
+    var accno = acno
+    var pinnum = pinn
+    var amount = amount
+    var data = this.accountDetails;
+      if (accno in data) {
+        let mpin = data[accno].pin;
+        if (pinnum == mpin) {
+            data[accno].balance= amount;
+            return true;
+        }
+      }
+
 }
     
+}

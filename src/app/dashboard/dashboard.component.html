@@ -1,41 +1,43 @@
 <div class="row">
     <div class="col-4"></div>
     <div class="col-4">
-        <h1>Welcome {{dataService.CurrentUser.name}} to Narcoz Bank </h1>
+        <h1>Welcome {{dataService.CurrentUser.name}} to Federal Bank </h1>
     </div>
     <div class="col-4"></div>
 </div>
 <div class="conatiner">
-
-
     <div class="row">
         <div class="col-6">
             <h2>Deposite Amout</h2><br>
             <div class="jumbotron">
 
-
+<form [formGroup]="depositForm" > 
                 <table>
                     <tr>
                         <td>Account Number</td>
-                        <td><input [(ngModel)]="acno" type="text" id="acno"></td><br>
+                        <td><input formControlName="acno" type="text" id="acno"></td>
+                        <div *ngIf="getError('acno')" class="error">Account number invalid</div><br>
                     </tr>
                     <tr>
                         <td>Pin</td>
-                        <td><input [(ngModel)]="pinn" type="text" id="pinn"></td><br>
+                        <td><input formControlName="pinn" type="text" id="pinn"></td>
+                        <div *ngIf="getError('pinn')" class="error">Pin number invalid</div><br>
                     </tr>
                     <tr>
                         <td>Amount</td>
-                        <td><input [(ngModel)]="amount" type="text" id="amount"></td><br>
+                        <td><input formControlName="amount" type="text" id="amount"></td>
+                        <div *ngIf="getError('amount')" class="error">Enter a valid amount</div><br>
                     </tr>
 
 
                 </table><br>
-                <button type="button" class="btn btn-primary" (click)="deposit()">Submit</button>
+            </form>
+            <button type="button" class="btn btn-primary" (click)="deposit()">Submit</button>
 
             </div>
         </div>
 
-
+  
         <div class="col-6">
             <h2>Widraw Amount</h2><br>
             <div class="jumbotron">

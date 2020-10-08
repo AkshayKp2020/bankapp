@@ -2,3 +2,41 @@
     color: red;
     font-size: small;
 }
+h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    padding-top: 22px;
+    color: #5e068a;
+    font-weight: 700;
+    max-width: 540px;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+span {
+    color: #06258a99;
+}
+
+h2 {
+    font-size: 40px;
+    color: #5e068a;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #5e068a;
+    margin-top: 20px;
+}
+
+#kk {
+    color: ivory;
+    font-weight: 700;
+    text-transform: uppercase;
+}
