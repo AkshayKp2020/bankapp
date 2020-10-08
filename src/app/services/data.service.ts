@@ -59,7 +59,7 @@ CurrentUser;
         let mpin = data[accno].pin;
         if (pinnum == mpin) {
             data[accno].balance+= amount;
-            return true;
+            return 
         }
       }
 
