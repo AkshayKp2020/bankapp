@@ -1,10 +1,18 @@
 h1
 {
-    color: blue;
+    color: rgb(0, 0, 0);
     
 }
 
 .error
 {
     color: red;
+}
+
+a{
+    color: rgb(71, 120, 255);
+}
+
+span{
+    color: rgb(0, 0, 0);
 }

@@ -95,13 +95,8 @@ widraw(acno1,pinn1,amount1)
     var data = this.accountDetails;
     if (acno1 in data) {
         let mpin1 = data[accno].pin;
-        if(data[accno].balance<amount1)
-        {
-          alert("Insufficent Balance!")
-          return
-        }
-
-        else if (pinn1 == mpin1) {
+      
+       if (pinn1 == mpin1) {
           data[accno].balance-= amount1;
           this.saveDetails();
 return true;

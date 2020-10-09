@@ -1,8 +1,14 @@
 <div class="row">
     <div class="col-4"></div>
     <div class="col-4">
-        <h1>Welcome {{dataService.CurrentUser.name}} to Federal Bank </h1>
+        <h1>Welcome <span>{{dataService.CurrentUser.name}} </span>
+         </h1>
+         <a routerLink="/transaction-history">Transaction History</a>
     </div>
+    
+        
+    
+
     <div class="col-4"></div>
 </div>
 <div class="conatiner">

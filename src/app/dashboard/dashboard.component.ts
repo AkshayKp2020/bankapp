@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit {
         let mpin1 = data[accno].pin;
 
         if (pinnum1 == mpin1) {
-          if(data[accno].balance<amount1)
+          if(data[accno].balance<parseInt(amount1))
           {
             alert("Insufficent Balance!")
           }
