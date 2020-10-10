@@ -18,7 +18,7 @@ const routes: Routes = [
     path:'register', component: RegisterComponent,
   },
   {
-    path:'transaction-history',component:TransactionHistoryComponent
+    path:'transaction-history',component: TransactionHistoryComponent,
   }
 ];
 
